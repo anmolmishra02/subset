@@ -1,0 +1,44 @@
+/*generate all possible subsets of given elements of array */
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<vector<int>> solve(vector<int> arr,int n)
+{
+  vector<vector<int> > set;
+  set.push_back(vector<int> ());
+  for(auto current:arr)
+  {
+    int size=set.size();
+    for(int i=0;i<size;i++)
+    {
+      vector<int> subset(set[i]);
+      subset.push_back(current);
+      set.push_back(subset);
+    }
+  }
+  return set;
+}
+
+
+int main()
+{
+  int n;
+  cin>>n;
+  vector<int> arr;
+  for(int i=0;i<n;i++)
+  {
+    int no;
+    cin>>no;
+    arr.push_back(no);
+  }
+  
+  vector<vector<int>> ans=solve(arr,n);
+  for(auto i:ans)
+  {
+    for(auto cur:i)
+    {
+      cout<<cur<<",";
+    }
+    cout<<endl;
+  }
+}
